@@ -1,9 +1,10 @@
-import type{ Listener, StoreApi } from "./types.ts";
+import { ListenerCollection } from "./listener";
+import type { StoreApi } from "./types";
 
 export function createStore<T>(initialState: T): StoreApi<T> {
   let state = initialState;
 
-  const listeners = new Set<Listener<T>>();
+  const listeners = new ListenerCollection<T>();
 
   function getState(): T {
     return state;
@@ -22,17 +23,11 @@ export function createStore<T>(initialState: T): StoreApi<T> {
       ...partialState,
     };
 
-    listeners.forEach((listener) => {
-      listener(state);
-    });
+    listeners.notify(state);
   }
 
-  function subscribe(listener: Listener<T>) {
-    listeners.add(listener);
-
-    return () => {
-      listeners.delete(listener);
-    };
+  function subscribe(listener: (state: T) => void) {
+    return listeners.subscribe(listener);
   }
 
   return {
