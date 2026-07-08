@@ -1,5 +1,6 @@
 export type Listener<T> = (state: T) => void;
 
+
 export interface StoreApi<T> {
   getState(): T;
 

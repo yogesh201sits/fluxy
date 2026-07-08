@@ -14,4 +14,5 @@ export class ListenerCollection<T> {
   notify(state: T) {
     this.listeners.forEach((listener) => listener(state));
   }
+  
 }

@@ -1,5 +1,5 @@
 import { ListenerCollection } from "./listener";
-import type { StoreApi } from "./types";
+import type { StoreApi, Listener } from "./types";
 
 export function createStore<T>(initialState: T): StoreApi<T> {
   let state = initialState;
@@ -7,12 +7,10 @@ export function createStore<T>(initialState: T): StoreApi<T> {
   const listeners = new ListenerCollection<T>();
 
   function getState(): T {
-    return state;
+    return state; 
   }
 
-  function setState(
-    partial: Partial<T> | ((state: T) => Partial<T>)
-  ): void {
+  function setState(partial: Partial<T> | ((state: T) => Partial<T>)): void {
     const partialState =
       typeof partial === "function"
         ? partial(state)
@@ -24,15 +22,13 @@ export function createStore<T>(initialState: T): StoreApi<T> {
     };
 
     listeners.notify(state);
+    
   }
 
-  function subscribe(listener: (state: T) => void) {
+  function subscribe(listener: Listener<T>) {
     return listeners.subscribe(listener);
   }
 
-  return {
-    getState,
-    setState,
-    subscribe,
-  };
+  return { getState, setState, subscribe,};
+
 }

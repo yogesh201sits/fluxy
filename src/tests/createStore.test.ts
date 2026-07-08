@@ -2,7 +2,7 @@ import { createStore } from "../core/createStore";
 import { describe, test, expect, mock } from "bun:test";
 
 describe("createStore", () => {
-  test("should initialize with the given state", () => {
+    test("should initialize with the given state", () => {
     const store = createStore({
       count: 0,
       name: "Yogesh",
