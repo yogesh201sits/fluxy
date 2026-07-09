@@ -1,9 +1,9 @@
 import { createStore } from "../core/createStore";
 
-const store = createStore({
+const store = createStore(() => ({
   count: 0,
   name: "Yogesh",
-});
+}));
 
 console.log("Initial State:");
 console.log(store.getState());
