@@ -1,18 +1,17 @@
 import { createStore } from "../core/createStore";
+import type { StateCreator, StoreApi } from "../core/types";
 import { useStore } from "./useStore";
 
-export function create<T>(initialState: T) {
-  
-  const store = createStore(initialState);
-  
-  function useBoundStore() {
-    return useStore(store);
-  }
+type UseBoundStore<T> = {
+  (): T;
+} & StoreApi<T>;
 
-  useBoundStore.getState = store.getState;
-  useBoundStore.setState = store.setState;
-  useBoundStore.subscribe = store.subscribe;
+export function create<T>(initializer: StateCreator<T>): UseBoundStore<T> {
+  const store = createStore(initializer);
 
-  return useBoundStore;
+  const useBoundStore = () => useStore(store);
 
+  Object.assign(useBoundStore, store);
+
+  return useBoundStore as UseBoundStore<T>;
 }

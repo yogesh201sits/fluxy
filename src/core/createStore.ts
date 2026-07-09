@@ -1,13 +1,13 @@
 import { ListenerCollection } from "./listener";
-import type { StoreApi, Listener } from "./types";
+import type { StoreApi, Listener, StateCreator } from "./types";
 
-export function createStore<T>(initialState: T): StoreApi<T> {
-  let state = initialState;
+export function createStore<T>(initializer: StateCreator<T>): StoreApi<T> {
+  let state!: T;
 
   const listeners = new ListenerCollection<T>();
 
   function getState(): T {
-    return state; 
+    return state;
   }
 
   function setState(partial: Partial<T> | ((state: T) => Partial<T>)): void {
@@ -22,13 +22,18 @@ export function createStore<T>(initialState: T): StoreApi<T> {
     };
 
     listeners.notify(state);
-    
   }
 
   function subscribe(listener: Listener<T>) {
     return listeners.subscribe(listener);
   }
 
-  return { getState, setState, subscribe,};
+  // Initialize the store state
+  state = initializer(setState, getState);
 
+  return {
+    getState,
+    setState,
+    subscribe,
+  };
 }

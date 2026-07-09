@@ -2,11 +2,11 @@ import { createStore } from "../core/createStore";
 import { describe, test, expect, mock } from "bun:test";
 
 describe("createStore", () => {
-    test("should initialize with the given state", () => {
-    const store = createStore({
+  test("should initialize with the given state", () => {
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     expect(store.getState()).toEqual({
       count: 0,
@@ -15,10 +15,10 @@ describe("createStore", () => {
   });
 
   test("should update state with an object", () => {
-    const store = createStore({
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     store.setState({
       count: 1,
@@ -31,10 +31,10 @@ describe("createStore", () => {
   });
 
   test("should update state with a function", () => {
-    const store = createStore({
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     store.setState((state) => ({
       count: state.count + 1,
@@ -47,10 +47,10 @@ describe("createStore", () => {
   });
 
   test("should notify subscribers when state changes", () => {
-    const store = createStore({
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     const listener = mock();
 
@@ -68,10 +68,10 @@ describe("createStore", () => {
   });
 
   test("should stop notifying after unsubscribe", () => {
-    const store = createStore({
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     const listener = mock();
 
@@ -93,10 +93,10 @@ describe("createStore", () => {
   });
 
   test("should merge partial updates", () => {
-    const store = createStore({
+    const store = createStore(() => ({
       count: 0,
       name: "Yogesh",
-    });
+    }));
 
     store.setState({
       name: "Mini Zustand",
