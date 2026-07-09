@@ -381,5 +381,5 @@ By completing Fluxy, we will understand:
 
 ✅ Implementing `createStore()`
 
-⬜ Implementing react integration
+✅ Implementing react integration
 
