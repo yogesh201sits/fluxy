@@ -22,6 +22,7 @@ export function createStore<T>(initializer: StateCreator<T>): StoreApi<T> {
     };
 
     listeners.notify(state);
+    
   }
 
   function subscribe(listener: Listener<T>) {

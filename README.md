@@ -10,6 +10,16 @@
 
 </div>
 
+<div align="center">
+
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
+![Made from scratch](https://img.shields.io/badge/built-from%20scratch-ff69b4)
+
+</div>
+
 ---
 
 # Goal
