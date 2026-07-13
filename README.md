@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="./public/logoFluxy.png" alt="Fluxy Logo" width="180" />
+<img width="677" height="369" alt="Gemini_Generated_Image_15mwqh15mwqh15mw-removebg-preview" src="https://github.com/user-attachments/assets/c57c5dab-3a4b-404f-8b58-160cf718cb2f" />
+
+
 
 # Fluxy
 
